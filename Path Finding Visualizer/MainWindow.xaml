@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Path_Finding_Visualizer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Path Finding Visualizer" Height="450" Width="800"
+        x:Name="Window">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.08*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <UniformGrid Name="grid" Grid.Column="1" Margin="10" Rows="30" Columns="50"/>
+
+        <StackPanel Grid.Column="0" Orientation="Vertical" Background="Black">
+        </StackPanel>
     </Grid>
 </Window>

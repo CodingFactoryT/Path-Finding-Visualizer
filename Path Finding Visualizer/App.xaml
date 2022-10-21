@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:Path_Finding_Visualizer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="GridStrokeBrush" Color="#111111"/>
+        <SolidColorBrush x:Key="PointNoneBrush" Color="White"/>
+        <SolidColorBrush x:Key="PointExploredBrush" Color="ForestGreen"/>
+        <SolidColorBrush x:Key="PointShortestPathBrush" Color="Brown"/>
+
     </Application.Resources>
 </Application>

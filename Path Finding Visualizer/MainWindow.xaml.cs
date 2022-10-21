@@ -23,6 +23,7 @@ namespace Path_Finding_Visualizer
         public MainWindow()
         {
             InitializeComponent();
+            MainGrid mainGrid = new MainGrid(grid);
         }
     }
 }
