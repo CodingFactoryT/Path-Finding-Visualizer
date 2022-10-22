@@ -10,6 +10,9 @@ namespace Path_Finding_Visualizer
     {
         None,
         Explored,
-        ShortestPath
+        ShortestPath,
+        Border,
+        Start,
+        End
     }
 }

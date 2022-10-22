@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Shapes;
 
 namespace Path_Finding_Visualizer
 {
-    internal class Point
+    internal class Point : UIElement
     {
-        public int x { get; }
-        public int y { get; }
-        public Point(int x, int y)
+        public static readonly DependencyProperty StateProperty =
+            DependencyProperty.RegisterAttached(
+                "State",
+                typeof(PointState),
+                typeof(Rectangle),
+                new FrameworkPropertyMetadata(defaultValue: PointState.None)
+            );
+
+        public static PointState GetState(Rectangle target)
         {
-            this.x = y;     //x and y are swapped because a two-dimensional array firstly takes the
-            this.y = x;     //row- and then  the column-dimension (opposite of normal coordinate systems)
+            return (PointState)target.GetValue(StateProperty);
         }
 
-        public bool Equals(Point p)
+        public static void SetState(Rectangle target, PointState state)
         {
-            return x == p.x && y == p.y;
+            target.SetValue(StateProperty, state);
         }
     }
 }

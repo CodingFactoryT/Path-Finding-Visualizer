@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace Path_Finding_Visualizer
 {
-    internal class MainGrid
+    internal partial class MainGrid //initialization logic for MainGrid Class
     {
         private static int rows = 30;
         private static int columns = 50;
@@ -22,8 +22,6 @@ namespace Path_Finding_Visualizer
 
             FillGridElementsArray();
             BindGridToUI();
-
-            SetPointState(new Point(3, 5), PointState.Explored);
         }
 
         public void FillGridElementsArray()
@@ -34,8 +32,12 @@ namespace Path_Finding_Visualizer
                 {
                     Rectangle rectangle = new Rectangle();
                     rectangle.Stroke = (SolidColorBrush) Application.Current.FindResource("GridStrokeBrush");
-                    rectangle.StrokeThickness = 0.5;
+                    rectangle.StrokeThickness = 0.25;
+                    rectangle.Margin = new Thickness(-0.5);
                     rectangle.Name = "Point_" + j + "_" + i;
+                    rectangle.MouseEnter += OnMouseAction;       //line of walls
+                    rectangle.MouseDown += OnMouseAction;       //single wall
+
                     gridElements[i, j] = rectangle;
                 }
             }
@@ -45,36 +47,9 @@ namespace Path_Finding_Visualizer
         {
             foreach (Rectangle r in gridElements)
             {
-                grid.Children.Add(r);   
+                grid.Children.Add(r);
+                SetPointState(r, PointState.None);  //if not set on initialization there are weird bugs with setting the borders
             }
-        }
-
-        public void ClearGrid()
-        {
-            foreach (Rectangle r in gridElements)
-            {
-                r.Fill = (SolidColorBrush)Application.Current.FindResource("PointNoneBrush");
-            }
-        }
-
-        public void SetPointState(Point p, PointState state)
-        {
-            String brushName = "";
-
-            switch (state)
-            {
-                case PointState.Explored:
-                    brushName = "PointExploredBrush";
-                    break;
-                case PointState.ShortestPath:
-                    brushName = "PointShortestPathBrush";
-                    break;
-                default:
-                    brushName = "PointNoneBrush";
-                    break;
-            }
-
-            gridElements[p.x, p.y].Fill = (SolidColorBrush)Application.Current.FindResource(brushName);
         }
     }
 }

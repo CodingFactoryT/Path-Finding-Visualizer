@@ -16,6 +16,7 @@
         <UniformGrid Name="grid" Grid.Column="1" Margin="10" Rows="30" Columns="50"/>
 
         <StackPanel Grid.Column="0" Orientation="Vertical" Background="Black">
+            
         </StackPanel>
     </Grid>
 </Window>
