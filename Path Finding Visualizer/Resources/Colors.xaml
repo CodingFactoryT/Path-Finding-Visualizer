@@ -7,4 +7,5 @@
     <SolidColorBrush x:Key="PointShortestPathBrush" Color="#bb54e3"/>
     <SolidColorBrush x:Key="PointBorderBrush" Color="#3c3c3c"/>
     <SolidColorBrush x:Key="IconBrush" Color="White"/>
+    <SolidColorBrush x:Key="MenuBarBrush" Color="Black"/>
 </ResourceDictionary>

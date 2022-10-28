@@ -27,7 +27,7 @@ namespace Path_Finding_Visualizer
             }
         }
 
-        public void ClearGrid()
+        public void ClearGrid(object sender, RoutedEventArgs e)
         {
             foreach (Rectangle r in gridElements)
             {

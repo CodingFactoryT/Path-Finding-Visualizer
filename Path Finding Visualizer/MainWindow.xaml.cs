@@ -25,5 +25,10 @@ namespace Path_Finding_Visualizer
             InitializeComponent();
             MainGrid mainGrid = new MainGrid(grid);
         }
+
+        private void ClearGridButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
