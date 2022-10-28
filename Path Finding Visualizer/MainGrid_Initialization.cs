@@ -11,7 +11,7 @@ namespace Path_Finding_Visualizer
         private static int rows = 30;
         private static int columns = 50;
         private UniformGrid grid;
-        private Rectangle[,] gridElements;
+        private static Rectangle[,] gridElements;
 
         public MainGrid(UniformGrid grid)
         {
@@ -34,7 +34,7 @@ namespace Path_Finding_Visualizer
                     rectangle.Stroke = (SolidColorBrush) Application.Current.FindResource("GridStrokeBrush");
                     rectangle.StrokeThickness = 0.25;
                     rectangle.Margin = new Thickness(-0.5);
-                    rectangle.Name = "Point_" + j + "_" + i;
+                    rectangle.Name = "Node_" + j + "_" + i;
                     rectangle.MouseEnter += OnMouseAction;       //line of walls
                     rectangle.MouseDown += OnMouseAction;       //single wall
 
@@ -48,7 +48,7 @@ namespace Path_Finding_Visualizer
             foreach (Rectangle r in gridElements)
             {
                 grid.Children.Add(r);
-                SetPointState(r, PointState.None);  //if not set on initialization there are weird bugs with setting the borders
+                SetNodeState(r, NodeState.None);  //if not set on initialization there are weird bugs with setting the borders
             }
         }
     }

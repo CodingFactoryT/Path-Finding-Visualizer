@@ -23,12 +23,12 @@ namespace Path_Finding_Visualizer
         public MainWindow()
         {
             InitializeComponent();
-            MainGrid mainGrid = new MainGrid(grid);
+            new MainGrid(grid);
         }
 
         private void ClearGridButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainGrid.ClearGrid();
         }
     }
 }

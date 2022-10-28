@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Path_Finding_Visualizer
 {
-    internal enum PointState
+    internal enum NodeState
     {
         None,
         Explored,

@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <SolidColorBrush x:Key="GridStrokeBrush" Color="#949b9b"/>
-    <SolidColorBrush x:Key="PointNoneBrush" Color="White"/>
-    <SolidColorBrush x:Key="PointExploredBrush" Color="#29e2ea"/>
-    <SolidColorBrush x:Key="PointShortestPathBrush" Color="#bb54e3"/>
-    <SolidColorBrush x:Key="PointBorderBrush" Color="#3c3c3c"/>
+    <SolidColorBrush x:Key="DefaultNodeBrush" Color="White"/>
+    <SolidColorBrush x:Key="ExploredNodeBrush" Color="#29e2ea"/>
+    <SolidColorBrush x:Key="ShortestPathNodeBrush" Color="#bb54e3"/>
+    <SolidColorBrush x:Key="BorderNodeBrush" Color="#3c3c3c"/>
     <SolidColorBrush x:Key="IconBrush" Color="White"/>
     <SolidColorBrush x:Key="MenuBarBrush" Color="Black"/>
 </ResourceDictionary>

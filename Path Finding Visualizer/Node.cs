@@ -8,22 +8,22 @@ using System.Windows.Shapes;
 
 namespace Path_Finding_Visualizer
 {
-    internal class Point : UIElement
+    internal class Node : UIElement
     {
         public static readonly DependencyProperty StateProperty =
             DependencyProperty.RegisterAttached(
                 "State",
-                typeof(PointState),
+                typeof(NodeState),
                 typeof(Rectangle),
-                new FrameworkPropertyMetadata(defaultValue: PointState.None)
+                new FrameworkPropertyMetadata(defaultValue: NodeState.None)
             );
 
-        public static PointState GetState(Rectangle target)
+        public static NodeState GetState(Rectangle target)
         {
-            return (PointState)target.GetValue(StateProperty);
+            return (NodeState)target.GetValue(StateProperty);
         }
 
-        public static void SetState(Rectangle target, PointState state)
+        public static void SetState(Rectangle target, NodeState state)
         {
             target.SetValue(StateProperty, state);
         }

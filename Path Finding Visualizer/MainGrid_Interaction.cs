@@ -19,73 +19,77 @@ namespace Path_Finding_Visualizer
             Rectangle rectangle = (Rectangle) sender;
             if(e.LeftButton == MouseButtonState.Pressed)
             {
-                SetPointState(rectangle, PointState.Border);
+                SetNodeState(rectangle, NodeState.Border);
             } 
             else if(e.RightButton == MouseButtonState.Pressed)
             {
-                SetPointState(rectangle, PointState.None);
+                SetNodeState(rectangle, NodeState.None);
             }
         }
 
-        public void ClearGrid(object sender, RoutedEventArgs e)
+        public static void ClearGrid()
         {
             foreach (Rectangle r in gridElements)
             {
-                SetPointState(r, PointState.None);
+                SetNodeState(r, NodeState.None);
             }
         }
 
-        public void SetPointState(Rectangle rectangle, PointState state)
+        public static void SetNodeState(Rectangle rectangle, NodeState state)
         {
-            String name = rectangle.Name;
-            int x = int.Parse(rectangle.Name.Split("_")[1]);
-            int y = int.Parse(rectangle.Name.Split("_")[2]);
-
-            SetPointState(new Coordinate(x, y), state);
+            Coordinate coordinate = GetCoordinateByRectangle(rectangle);
+            SetNodeState(coordinate, state);
         }
 
-        public void SetPointState(Coordinate c, PointState state)
+        public static void SetNodeState(Coordinate c, NodeState state)
         {
             String fillBrushName = "";
             String strokeBrushName = "";
 
             switch (state)
             {
-                case PointState.Explored:
-                    fillBrushName = "PointExploredBrush";
-                    strokeBrushName = "PointNoneBrush";
+                case NodeState.Explored:
+                    fillBrushName = "ExploredNodeBrush";
+                    strokeBrushName = "DefaultNodeBrush";
                     break;
-                case PointState.ShortestPath:
-                    fillBrushName = "PointShortestPathBrush";
-                    strokeBrushName = "PointNoneBrush";
+                case NodeState.ShortestPath:
+                    fillBrushName = "ShortestPathNodeBrush";
+                    strokeBrushName = "DefaultNodeBrush";
                     break;
-                case PointState.Border:
-                    fillBrushName = "PointBorderBrush";
-                    strokeBrushName = "PointBorderBrush";
+                case NodeState.Border:
+                    fillBrushName = "BorderNodeBrush";
+                    strokeBrushName = "BorderNodeBrush";
                     break;
                 default:
-                    fillBrushName = "PointNoneBrush";
+                    fillBrushName = "DefaultNodeBrush";
                     strokeBrushName = "GridStrokeBrush";
                     break;
             }
 
             gridElements[c.x, c.y].Fill = (SolidColorBrush) Application.Current.FindResource(fillBrushName);
             gridElements[c.x, c.y].Stroke = (SolidColorBrush) Application.Current.FindResource(strokeBrushName);
-            gridElements[c.x, c.y].SetValue(Point.StateProperty, state);
+            gridElements[c.x, c.y].SetValue(Node.StateProperty, state);
         }
 
-        public void GetPointState(Rectangle rectangle)
+        public void GetNodeState(Rectangle rectangle)
+        {
+            Coordinate coordinate = GetCoordinateByRectangle(rectangle);
+            GetNodeState(coordinate);
+        }
+
+
+        public NodeState GetNodeState(Coordinate c)
+        {
+            return (NodeState) gridElements[c.x, c.y].GetValue(Node.StateProperty);
+        }
+
+        private static Coordinate GetCoordinateByRectangle(Rectangle rectangle)
         {
             String name = rectangle.Name;
             int x = int.Parse(rectangle.Name.Split("_")[1]);
             int y = int.Parse(rectangle.Name.Split("_")[2]);
 
-            GetPointState(new Coordinate(x, y));
-        }
-
-        public PointState GetPointState(Coordinate c)
-        {
-            return (PointState) gridElements[c.x, c.y].GetValue(Point.StateProperty);
+            return new Coordinate(x, y);
         }
     }
 }
