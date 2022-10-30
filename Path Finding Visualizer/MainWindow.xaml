@@ -17,36 +17,42 @@
         
         <UniformGrid Name="grid" Grid.Column="2" Margin="10" Rows="30" Columns="50"/>
 
-        <StackPanel Name="IconBar" Grid.Column="0" Orientation="Vertical" Background="{StaticResource MenuBarBrush}">
-            <Button Name="StartPauseButton" Click="StartPauseButton_Click" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}">
-                <Button.Content>
-                    <Viewbox Stretch="Uniform">
+        <Rectangle Fill="{StaticResource MenuBarBrush}" Grid.Row="0"/>
+        <Viewbox Grid.Row="0" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top">
+            <StackPanel Name="IconBar" Orientation="Vertical">
+                <Button Name="MenuButton" Click="MenuButton_Click" Margin="0,0,0,20" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}">
+                    <Button.Content>
+                        <ContentPresenter Content="{StaticResource MenuIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
+                    </Button.Content>
+                </Button>
+                <Button Name="StartPauseButton" Click="StartPauseButton_Click" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}">
+                    <Button.Content>
                         <ContentPresenter Name="StartPauseButtonContentPresenter" Content="{StaticResource StartExecutionIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-            <Button Name="StopButton" Click="StopButton_Click" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}">
-                <Button.Content>
-                    <Viewbox Stretch="Uniform">
+                    </Button.Content>
+                </Button>
+                <Button Name="StopButton" Click="StopButton_Click" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}">
+                    <Button.Content>
                         <ContentPresenter Content="{StaticResource StopExecutionIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-            <Button Name="ClearGridButton" Click="ClearGridButton_Click" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}" Margin="0,30,0,40">
-                <Button.Content>
-                    <Viewbox Stretch="Uniform">
+                    </Button.Content>
+                </Button>
+                <Button Name="ClearGridButton" Click="ClearGridButton_Click" Background="{StaticResource MenuBarBrush}" BorderBrush="{StaticResource MenuBarBrush}" Margin="0,30,0,0">
+                    <Button.Content>
                         <ContentPresenter Content="{StaticResource ClearGridIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-        </StackPanel>
-        <Viewbox Stretch="Uniform" Grid.Row="0" Margin="0,50,0,0" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Viewbox>
+        <Viewbox Grid.Row="0" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
             <Viewbox.RenderTransform>
                 <ScaleTransform ScaleX="{StaticResource DescriptableIconScale}" ScaleY="{StaticResource DescriptableIconScale}"/>
             </Viewbox.RenderTransform>
             <StackPanel Orientation="Vertical">
                 <ContentPresenter Margin="0,10,0,0" Content="{StaticResource StartNodeIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
                 <ContentPresenter Margin="0,10,0,0" Content="{StaticResource TargetNodeIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
+                <ContentPresenter Margin="0,10,0,0" Content="{StaticResource DefaultNodeIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
+                <ContentPresenter Margin="0,10,0,0" Content="{StaticResource BorderNodeIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
+                <ContentPresenter Margin="0,10,0,0" Content="{StaticResource ExploredNodeIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
+                <ContentPresenter Margin="0,10,0,0" Content="{StaticResource ShortestPathNodeIcon}" HorizontalAlignment="Center" Width="48" Height="48"/>
             </StackPanel>
         </Viewbox>
 

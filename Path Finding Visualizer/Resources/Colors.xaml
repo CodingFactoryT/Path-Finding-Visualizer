@@ -6,6 +6,8 @@
     <SolidColorBrush x:Key="ExploredNodeBrush" Color="#29e2ea"/>
     <SolidColorBrush x:Key="ShortestPathNodeBrush" Color="#bb54e3"/>
     <SolidColorBrush x:Key="BorderNodeBrush" Color="#3c3c3c"/>
+    <SolidColorBrush x:Key="StartNodeBrush" Color="#1872E9"/>
+    <SolidColorBrush x:Key="TargetNodeBrush" Color="#E94231"/>
     <SolidColorBrush x:Key="IconBrush" Color="White"/>
     <SolidColorBrush x:Key="MenuBarBrush" Color="Black"/>
 </ResourceDictionary>

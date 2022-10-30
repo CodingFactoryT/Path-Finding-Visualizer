@@ -43,5 +43,10 @@ namespace Path_Finding_Visualizer
             mainMenu.PlayPauseButtonClicked();
             MainGrid.ClearGrid();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
