@@ -20,14 +20,27 @@ namespace Path_Finding_Visualizer
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainMenu mainMenu;
         public MainWindow()
         {
             InitializeComponent();
             new MainGrid(grid);
+            mainMenu = new MainMenu(IconBar, DescriptionBar);
         }
 
         private void ClearGridButton_Click(object sender, RoutedEventArgs e)
         {
+            MainGrid.ClearGrid();
+        }
+
+        private void StartPauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainMenu.PlayPauseButtonClicked();
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainMenu.PlayPauseButtonClicked();
             MainGrid.ClearGrid();
         }
     }

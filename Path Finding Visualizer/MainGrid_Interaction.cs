@@ -14,16 +14,21 @@ namespace Path_Finding_Visualizer
 {
     internal partial class MainGrid //interaction logic for MainGrid Class
     {
+        public static bool IsDrawingEnabled { get; set; } = true;
+
         private void OnMouseAction(object sender, MouseEventArgs e)
         {
-            Rectangle rectangle = (Rectangle) sender;
-            if(e.LeftButton == MouseButtonState.Pressed)
+            if (IsDrawingEnabled)
             {
-                SetNodeState(rectangle, NodeState.Border);
-            } 
-            else if(e.RightButton == MouseButtonState.Pressed)
-            {
-                SetNodeState(rectangle, NodeState.None);
+                Rectangle rectangle = (Rectangle) sender;
+                if(e.LeftButton == MouseButtonState.Pressed)
+                {
+                    SetNodeState(rectangle, NodeState.Border);
+                } 
+                else if(e.RightButton == MouseButtonState.Pressed)
+                {
+                    SetNodeState(rectangle, NodeState.None);
+                }
             }
         }
 
