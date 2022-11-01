@@ -10,4 +10,6 @@
     <SolidColorBrush x:Key="TargetNodeBrush" Color="#E94231"/>
     <SolidColorBrush x:Key="IconBrush" Color="White"/>
     <SolidColorBrush x:Key="MenuBarBrush" Color="Black"/>
+    <SolidColorBrush x:Key="SettingsBarBrush" Color="Black"/>
+
 </ResourceDictionary>
