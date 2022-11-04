@@ -10,7 +10,6 @@
                 <ResourceDictionary x:Name="IconsDictionary" Source="Resources/Icons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <System:Double x:Key="DescriptableIconScale">0.5</System:Double>
-            <System:Double x:Key="SettingsBarScale">1</System:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

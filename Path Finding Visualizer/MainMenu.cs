@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Path_Finding_Visualizer.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,15 @@ namespace Path_Finding_Visualizer
     internal class MainMenu
     {
         private StackPanel iconBar;
-        private StackPanel descriptionBar;
-        private ContentPresenter startPauseButtonContentPresenter;
-        private Button stopButton;
+        private MenuButton startPauseButton;
+        private MenuButton stopButton;
         private bool isExecutionRunning = false;
 
-        public MainMenu(StackPanel iconBar, StackPanel descriptionBar)
+        public MainMenu(StackPanel iconBar)
         {
             this.iconBar = iconBar;
-            this.descriptionBar = descriptionBar;
-            startPauseButtonContentPresenter = (ContentPresenter) iconBar.FindName("StartPauseButtonContentPresenter");
-            stopButton = (Button) iconBar.FindName("StopButton");
+            startPauseButton = (MenuButton) iconBar.FindName("StartPauseButton");
+            stopButton = (MenuButton) iconBar.FindName("StopButton");
             stopButton.Visibility = Visibility.Hidden;
         }
 
@@ -32,13 +31,15 @@ namespace Path_Finding_Visualizer
 
             if (isExecutionRunning)
             {
-                startPauseButtonContentPresenter.Content = Application.Current.FindResource("PauseExecutionIcon") as Path;
+                startPauseButton.Icon = Application.Current.FindResource("PauseExecutionIcon") as Path;
+                startPauseButton.Description = "Pause";
                 stopButton.Visibility = Visibility.Visible;
                 MainGrid.IsDrawingEnabled = false;
             }
             else
             {
-                startPauseButtonContentPresenter.Content = Application.Current.FindResource("StartExecutionIcon") as Path;
+                startPauseButton.Icon = Application.Current.FindResource("StartExecutionIcon") as Path;
+                startPauseButton.Description = "Start";
                 stopButton.Visibility = Visibility.Hidden;
                 MainGrid.IsDrawingEnabled = true;
             }

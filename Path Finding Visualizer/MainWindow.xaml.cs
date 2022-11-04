@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Path_Finding_Visualizer
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         MainMenu mainMenu;
@@ -25,7 +22,7 @@ namespace Path_Finding_Visualizer
         {
             InitializeComponent();
             new MainGrid(grid);
-            mainMenu = new MainMenu(IconBar, DescriptionBar);
+            mainMenu = new MainMenu(IconBar);
         }
 
         private void ClearGridButton_Click(object sender, RoutedEventArgs e)
