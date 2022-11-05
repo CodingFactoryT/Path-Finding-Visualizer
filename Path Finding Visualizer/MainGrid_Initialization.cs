@@ -3,6 +3,8 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using System.Windows;
+using System.Windows.Controls;
+using Path_Finding_Visualizer.VisualizingLogic;
 
 namespace Path_Finding_Visualizer
 {
@@ -10,15 +12,15 @@ namespace Path_Finding_Visualizer
     {
         private static int rows = 30;
         private static int columns = 50;
-        private UniformGrid grid;
-        private static Rectangle[,] gridElements;
+        protected UniformGrid grid;
+        protected static Border[,] gridElements;
 
         public MainGrid(UniformGrid grid)
         {
             this.grid = grid;
             rows = grid.Rows;
             columns = grid.Columns;
-            gridElements = new Rectangle[rows, columns];
+            gridElements = new Border[rows, columns];
 
             FillGridElementsArray();
             BindGridToUI();
@@ -30,25 +32,26 @@ namespace Path_Finding_Visualizer
             {
                 for(int j = 0; j < columns; j++)
                 {
-                    Rectangle rectangle = new Rectangle();
-                    rectangle.Stroke = (SolidColorBrush) Application.Current.FindResource("GridStrokeBrush");
-                    rectangle.StrokeThickness = 0.25;
-                    rectangle.Margin = new Thickness(-0.5);
-                    rectangle.Name = "Node_" + j + "_" + i;
-                    rectangle.MouseEnter += OnMouseAction;       //line of walls
-                    rectangle.MouseDown += OnMouseAction;       //single wall
-
-                    gridElements[i, j] = rectangle;
+                    Border border = new Border()
+                    {
+                        BorderBrush = (SolidColorBrush)Application.Current.FindResource("GridStrokeBrush"),
+                        BorderThickness = new Thickness(0.5),
+                        Margin = new Thickness(-1),
+                        Name = "Node_" + j + "_" + i,
+                    };
+                    border.MouseEnter += OnMouseAction;       //line of walls
+                    border.MouseDown += OnMouseAction;       //single wall
+                    gridElements[i, j] = border;
                 }
             }
         }
 
         public void BindGridToUI()
         {
-            foreach (Rectangle r in gridElements)
+            foreach (Border b in gridElements)
             {
-                grid.Children.Add(r);
-                SetNodeState(r, NodeState.None);  //if not set on initialization there are weird bugs with setting the borders
+                grid.Children.Add(b);
+                SetNodeState(b, NodeState.None);  //if not set on initialization there are weird bugs with setting the borders
             }
         }
     }

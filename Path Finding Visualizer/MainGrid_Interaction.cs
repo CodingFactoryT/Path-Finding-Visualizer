@@ -6,9 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using Path_Finding_Visualizer.VisualizingLogic;
 
 namespace Path_Finding_Visualizer
 {
@@ -20,29 +23,29 @@ namespace Path_Finding_Visualizer
         {
             if (IsDrawingEnabled)
             {
-                Rectangle rectangle = (Rectangle) sender;
+                Border border = (Border) sender;
                 if(e.LeftButton == MouseButtonState.Pressed)
                 {
-                    SetNodeState(rectangle, NodeState.Border);
+                    SetNodeState(border, NodeState.Border);
                 } 
                 else if(e.RightButton == MouseButtonState.Pressed)
                 {
-                    SetNodeState(rectangle, NodeState.None);
+                    SetNodeState(border, NodeState.None);
                 }
             }
         }
 
         public static void ClearGrid()
         {
-            foreach (Rectangle r in gridElements)
+            foreach (Border r in gridElements)
             {
                 SetNodeState(r, NodeState.None);
             }
         }
 
-        public static void SetNodeState(Rectangle rectangle, NodeState state)
+        public static void SetNodeState(Border border, NodeState state)
         {
-            Coordinate coordinate = GetCoordinateByRectangle(rectangle);
+            Coordinate coordinate = GetCoordinateByBorder(border);
             SetNodeState(coordinate, state);
         }
 
@@ -71,14 +74,14 @@ namespace Path_Finding_Visualizer
                     break;
             }
 
-            gridElements[c.x, c.y].Fill = (SolidColorBrush) Application.Current.FindResource(fillBrushName);
-            gridElements[c.x, c.y].Stroke = (SolidColorBrush) Application.Current.FindResource(strokeBrushName);
+            gridElements[c.x, c.y].Background = (SolidColorBrush) Application.Current.FindResource(fillBrushName);
+            gridElements[c.x, c.y].BorderBrush = (SolidColorBrush) Application.Current.FindResource(strokeBrushName);
             gridElements[c.x, c.y].SetValue(Node.StateProperty, state);
         }
 
-        public void GetNodeState(Rectangle rectangle)
+        public void GetNodeState(Border border)
         {
-            Coordinate coordinate = GetCoordinateByRectangle(rectangle);
+            Coordinate coordinate = GetCoordinateByBorder(border);
             GetNodeState(coordinate);
         }
 
@@ -88,11 +91,11 @@ namespace Path_Finding_Visualizer
             return (NodeState) gridElements[c.x, c.y].GetValue(Node.StateProperty);
         }
 
-        private static Coordinate GetCoordinateByRectangle(Rectangle rectangle)
+        private static Coordinate GetCoordinateByBorder(Border border)
         {
-            String name = rectangle.Name;
-            int x = int.Parse(rectangle.Name.Split("_")[1]);
-            int y = int.Parse(rectangle.Name.Split("_")[2]);
+            String name = border.Name;
+            int x = int.Parse(border.Name.Split("_")[1]);
+            int y = int.Parse(border.Name.Split("_")[2]);
 
             return new Coordinate(x, y);
         }

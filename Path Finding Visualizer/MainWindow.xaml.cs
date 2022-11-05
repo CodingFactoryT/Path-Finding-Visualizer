@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Path_Finding_Visualizer.VisualizingLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Path_Finding_Visualizer
         public MainWindow()
         {
             InitializeComponent();
-            new MainGrid(grid);
+            new MoveNodeLogic(grid);
             mainMenu = new MainMenu(IconBar);
         }
 
