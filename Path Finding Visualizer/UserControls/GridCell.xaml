@@ -5,13 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Path_Finding_Visualizer.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="30" d:DesignWidth="30"
              Name="root">
     <Label BorderBrush = "{StaticResource GridStrokeBrush}"
            BorderThickness = "0.5"
            Margin = "-1"
-           MouseEnter="Label_MouseEnter"
-           MouseDown="Label_MouseDown">
-        <local:IconPresenter Icon="{Binding Icon, ElementName=root}"/>
+           HorizontalAlignment="Center">
+        
+        <Viewbox Stretch="Uniform">
+            <local:IconPresenter Icon="{StaticResource StartNodeIcon}"/>
+        </Viewbox>
     </Label>
 </UserControl>

@@ -35,7 +35,7 @@ namespace Path_Finding_Visualizer.UserControls
         }
 
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(object), typeof(IconPresenter), new PropertyMetadata(0));
+            DependencyProperty.Register("Icon", typeof(object), typeof(IconPresenter), new PropertyMetadata("Hey"));
 
 
         public IconPresenter()

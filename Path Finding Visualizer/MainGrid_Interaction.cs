@@ -92,11 +92,11 @@ namespace Path_Finding_Visualizer
             return (NodeState) gridCells[c.x, c.y].GetValue(Node.StateProperty);
         }
 
-        private static Coordinate GetCoordinateByGridCell(GridCell border)
+        private static Coordinate GetCoordinateByGridCell(GridCell gridCell)
         {
-            String name = border.Name;
-            int x = int.Parse(border.Name.Split("_")[1]);
-            int y = int.Parse(border.Name.Split("_")[2]);
+            String name = gridCell.Name;
+            int x = int.Parse(gridCell.Name.Split("_")[1]);
+            int y = int.Parse(gridCell.Name.Split("_")[2]);
 
             return new Coordinate(x, y);
         }

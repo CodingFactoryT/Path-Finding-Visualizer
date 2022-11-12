@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Path_Finding_Visualizer.VisualizingLogic;
 using Path_Finding_Visualizer.UserControls;
+using System.Diagnostics;
 
 namespace Path_Finding_Visualizer
 {
@@ -22,7 +23,6 @@ namespace Path_Finding_Visualizer
             rows = grid.Rows;
             columns = grid.Columns;
             gridCells = new GridCell[rows, columns];
-
             FillGridElementsArray();
             BindGridToUI();
         }
@@ -33,10 +33,8 @@ namespace Path_Finding_Visualizer
             {
                 for(int j = 0; j < columns; j++)
                 {
-                    GridCell gridCell = new GridCell()
-                    {
-                        Name = "Node_" + j + "_" + i,
-                    };
+                    GridCell gridCell = new GridCell();
+                    gridCell.Name = "Node_" + j + "_" + i;
                     gridCell.MouseEnter += OnMouseAction;       //line of walls
                     gridCell.MouseDown += OnMouseAction;       //single wall
                     gridCells[i, j] = gridCell;
@@ -46,10 +44,9 @@ namespace Path_Finding_Visualizer
 
         public void BindGridToUI()
         {
-            foreach (GridCell g in gridCells)
+            foreach(GridCell g in gridCells)
             {
                 grid.Children.Add(g);
-                SetNodeState(g, NodeState.Default);  //if not set on initialization there are weird bugs with setting the borders
             }
         }
     }

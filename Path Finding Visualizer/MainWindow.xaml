@@ -58,17 +58,23 @@
                  VerticalAlignment="Bottom">
             <StackPanel Orientation="Vertical" Margin="0,20">
                 <usercontrols:IconPresenter Icon="{StaticResource StartNodeIcon}"
-                                            Description="Start Node"/>
+                                            Description="Start Node"
+                                            Margin="15,10"/>
                 <usercontrols:IconPresenter Icon="{StaticResource TargetNodeIcon}"
-                                            Description="Target Node"/>
+                                            Description="Target Node"
+                                            Margin="15,10"/>
                 <usercontrols:IconPresenter Icon="{StaticResource DefaultNodeIcon}"
-                                            Description="Default Node"/>
+                                            Description="Default Node"
+                                            Margin="15,10"/>
                 <usercontrols:IconPresenter Icon="{StaticResource BorderNodeIcon}"
-                                            Description="Border Node"/>
+                                            Description="Border Node"
+                                            Margin="15,10"/>
                 <usercontrols:IconPresenter Icon="{StaticResource ExploredNodeIcon}"
-                                            Description="Explored Node"/>
+                                            Description="Explored Node"
+                                            Margin="15,10"/>
                 <usercontrols:IconPresenter Icon="{StaticResource ShortestPathNodeIcon}"
-                                            Description="Shortest Path Node"/>
+                                            Description="Shortest Path Node"
+                                            Margin="15,10"/>
             </StackPanel>
         </Viewbox>
 

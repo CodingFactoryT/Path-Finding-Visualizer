@@ -11,8 +11,6 @@ namespace Path_Finding_Visualizer
         Default,
         Explored,
         ShortestPath,
-        Border,
-        Start,
-        End
+        Border
     }
 }
