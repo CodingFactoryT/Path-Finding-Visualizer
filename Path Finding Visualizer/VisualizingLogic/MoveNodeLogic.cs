@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Path_Finding_Visualizer.VisualizingLogic
@@ -25,28 +26,20 @@ namespace Path_Finding_Visualizer.VisualizingLogic
 
             //ChangeStartNodePosition(new Coordinate(0,0), startNodePosition);
             //ChangeTargetNodePosition(new Coordinate(1, 0), targetNodePosition);
-
-            Debug.Write("Started");
         }
 
         private void ChangeStartNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            Label label = new Label();
-            label.Content = startNodePath; 
-            gridElements[oldPosition.x, oldPosition.y].Child = new Path();
-            gridElements[newPosition.x, newPosition.y].Child = label;
+            gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
+            gridCells[newPosition.x, newPosition.y].Icon = startNodePath;
             startNodePosition = newPosition;
         }
 
         private void ChangeTargetNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            Label label = new Label();
-            label.Content = targetNodePath;
-            gridElements[oldPosition.x, oldPosition.y].Child = new Path();
-            gridElements[newPosition.x, newPosition.y].Child = label;
+            gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
+            gridCells[newPosition.x, newPosition.y].Icon = targetNodePath;
             targetNodePosition = newPosition;
         }
-
-
     }
 }

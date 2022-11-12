@@ -5,6 +5,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows;
 using System.Windows.Controls;
 using Path_Finding_Visualizer.VisualizingLogic;
+using Path_Finding_Visualizer.UserControls;
 
 namespace Path_Finding_Visualizer
 {
@@ -13,14 +14,14 @@ namespace Path_Finding_Visualizer
         private static int rows = 30;
         private static int columns = 50;
         protected UniformGrid grid;
-        protected static Border[,] gridElements;
+        protected static GridCell[,] gridCells;
 
         public MainGrid(UniformGrid grid)
         {
             this.grid = grid;
             rows = grid.Rows;
             columns = grid.Columns;
-            gridElements = new Border[rows, columns];
+            gridCells = new GridCell[rows, columns];
 
             FillGridElementsArray();
             BindGridToUI();
@@ -32,26 +33,23 @@ namespace Path_Finding_Visualizer
             {
                 for(int j = 0; j < columns; j++)
                 {
-                    Border border = new Border()
+                    GridCell gridCell = new GridCell()
                     {
-                        BorderBrush = (SolidColorBrush)Application.Current.FindResource("GridStrokeBrush"),
-                        BorderThickness = new Thickness(0.5),
-                        Margin = new Thickness(-1),
                         Name = "Node_" + j + "_" + i,
                     };
-                    border.MouseEnter += OnMouseAction;       //line of walls
-                    border.MouseDown += OnMouseAction;       //single wall
-                    gridElements[i, j] = border;
+                    gridCell.MouseEnter += OnMouseAction;       //line of walls
+                    gridCell.MouseDown += OnMouseAction;       //single wall
+                    gridCells[i, j] = gridCell;
                 }
             }
         }
 
         public void BindGridToUI()
         {
-            foreach (Border b in gridElements)
+            foreach (GridCell g in gridCells)
             {
-                grid.Children.Add(b);
-                SetNodeState(b, NodeState.None);  //if not set on initialization there are weird bugs with setting the borders
+                grid.Children.Add(g);
+                SetNodeState(g, NodeState.Default);  //if not set on initialization there are weird bugs with setting the borders
             }
         }
     }

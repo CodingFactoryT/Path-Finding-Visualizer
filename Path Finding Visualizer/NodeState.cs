@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Path_Finding_Visualizer
 {
-    internal enum NodeState
+    public enum NodeState
     {
-        None,
+        Default,
         Explored,
         ShortestPath,
         Border,

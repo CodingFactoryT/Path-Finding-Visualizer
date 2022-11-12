@@ -15,7 +15,7 @@ namespace Path_Finding_Visualizer
                 "State",
                 typeof(NodeState),
                 typeof(Rectangle),
-                new FrameworkPropertyMetadata(defaultValue: NodeState.None)
+                new FrameworkPropertyMetadata(defaultValue: NodeState.Default)
             );
 
         public static NodeState GetState(Rectangle target)

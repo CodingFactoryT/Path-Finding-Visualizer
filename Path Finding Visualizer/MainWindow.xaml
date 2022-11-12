@@ -51,10 +51,6 @@
                                          Description="Clear Grid"
                                          Margin="0,30,0,0"
                                          ButtonClick="ClearGridButton_Click"/>
-                <Border Background="Black"
-                        Height="50">
-                    <Path Data="M12 36V12h24v24Z" Fill="White"/>
-                </Border>
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.RowSpan="2" 
