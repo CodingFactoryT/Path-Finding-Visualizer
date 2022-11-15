@@ -46,6 +46,7 @@ namespace Path_Finding_Visualizer
         {
             foreach(GridCell g in gridCells)
             {
+                SetNodeState(g, NodeState.Default);
                 grid.Children.Add(g);
             }
         }

@@ -27,15 +27,15 @@ namespace Path_Finding_Visualizer.VisualizingLogic
 
         private void ChangeStartNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            //gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
-            //gridCells[newPosition.x, newPosition.y].Icon = startNodePath;
+            gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
+            gridCells[newPosition.x, newPosition.y].Icon = startNodePath;
             startNodePosition = newPosition;
         }
 
         private void ChangeTargetNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            //gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
-            //gridCells[newPosition.x, newPosition.y].Icon = targetNodePath;
+            gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
+            gridCells[newPosition.x, newPosition.y].Icon = targetNodePath;
             targetNodePosition = newPosition;
         }
     }

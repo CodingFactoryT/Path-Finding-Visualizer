@@ -28,6 +28,18 @@ namespace Path_Finding_Visualizer.UserControls
             DependencyProperty.Register("State", typeof(NodeState), typeof(GridCell), new PropertyMetadata(NodeState.Default));
 
 
+
+        public object Icon
+        {
+            get { return (object)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(object), typeof(GridCell));
+
+
         public GridCell()
         {
             InitializeComponent();

@@ -10,10 +10,11 @@
     <Label BorderBrush = "{StaticResource GridStrokeBrush}"
            BorderThickness = "0.5"
            Margin = "-1"
-           HorizontalAlignment="Center">
+           HorizontalAlignment="Stretch"
+           HorizontalContentAlignment="Center">
         
         <Viewbox Stretch="Uniform">
-            <local:IconPresenter Icon="{StaticResource StartNodeIcon}"/>
+            <local:IconPresenter Icon="{Binding Icon, ElementName=root}"/>
         </Viewbox>
     </Label>
 </UserControl>
