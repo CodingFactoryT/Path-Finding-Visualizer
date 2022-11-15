@@ -27,8 +27,6 @@ namespace Path_Finding_Visualizer.UserControls
         public static readonly DependencyProperty StateProperty =
             DependencyProperty.Register("State", typeof(NodeState), typeof(GridCell), new PropertyMetadata(NodeState.Default));
 
-
-
         public object Icon
         {
             get { return (object)GetValue(IconProperty); }

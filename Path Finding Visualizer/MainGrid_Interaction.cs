@@ -25,9 +25,14 @@ namespace Path_Finding_Visualizer
             if (IsDrawingEnabled)
             {
                 GridCell gridCell = (GridCell) sender;
+                Coordinate pos = GetCoordinateByGridCell(gridCell);
                 if(e.LeftButton == MouseButtonState.Pressed)
                 {
-                    SetNodeState(gridCell, NodeState.Border);
+                    if(!pos.Equals(MoveNodeLogic.startNodePosition) 
+                        && !pos.Equals(MoveNodeLogic.targetNodePosition))
+                    {
+                        SetNodeState(gridCell, NodeState.Border);
+                    }
                 } 
                 else if(e.RightButton == MouseButtonState.Pressed)
                 {
@@ -92,7 +97,7 @@ namespace Path_Finding_Visualizer
             return (NodeState) gridCells[c.x, c.y].GetValue(Node.StateProperty);
         }
 
-        private static Coordinate GetCoordinateByGridCell(GridCell gridCell)
+        public static Coordinate GetCoordinateByGridCell(GridCell gridCell)
         {
             String name = gridCell.Name;
             int x = int.Parse(gridCell.Name.Split("_")[1]);

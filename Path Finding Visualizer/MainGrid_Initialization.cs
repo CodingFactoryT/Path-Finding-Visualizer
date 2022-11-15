@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Path_Finding_Visualizer.VisualizingLogic;
 using Path_Finding_Visualizer.UserControls;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace Path_Finding_Visualizer
 {
@@ -35,8 +36,9 @@ namespace Path_Finding_Visualizer
                 {
                     GridCell gridCell = new GridCell();
                     gridCell.Name = "Node_" + j + "_" + i;
-                    gridCell.MouseEnter += OnMouseAction;       //line of walls
-                    gridCell.MouseDown += OnMouseAction;       //single wall
+                    gridCell.MouseEnter += OnMouseAction;       //line of walls while mouse moves
+                    gridCell.MouseDown += OnMouseAction;        //single wall while mouse doesn´t move
+                    gridCell.MouseMove += MoveNodeLogic.OnMouseMove;
                     gridCells[i, j] = gridCell;
                 }
             }

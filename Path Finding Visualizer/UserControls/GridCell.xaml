@@ -12,7 +12,7 @@
            Margin = "-1"
            HorizontalAlignment="Stretch"
            HorizontalContentAlignment="Center">
-        
+
         <Viewbox Stretch="Uniform">
             <local:IconPresenter Icon="{Binding Icon, ElementName=root}"/>
         </Viewbox>
