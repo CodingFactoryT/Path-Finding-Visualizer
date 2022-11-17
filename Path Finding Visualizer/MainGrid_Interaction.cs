@@ -24,35 +24,34 @@ namespace Path_Finding_Visualizer
         {
             if (IsDrawingEnabled)
             {
-                UserControls.Node gridCell = (UserControls.Node) sender;
-                Coordinate pos = GetCoordinateByGridCell(gridCell);
+                Node node = (Node) sender;
+                Coordinate pos = node.position;
                 if(e.LeftButton == MouseButtonState.Pressed)
                 {
                     if(!pos.Equals(MoveNodeLogic.StartNodePosition) 
                         && !pos.Equals(MoveNodeLogic.TargetNodePosition))
                     {
-                        SetNodeState(gridCell, NodeState.Border);
+                        SetNodeState(pos, NodeState.Border);
                     }
                 } 
                 else if(e.RightButton == MouseButtonState.Pressed)
                 {
-                    SetNodeState(gridCell, NodeState.Default);
+                    SetNodeState(node, NodeState.Default);
                 }
             }
         }
 
         public static void ClearGrid()
         {
-            foreach (UserControls.Node g in Nodes)
+            foreach (Node n in Nodes)
             {
-                SetNodeState(g, NodeState.Default);
+                SetNodeState(n, NodeState.Default);
             }
         }
 
-        public static void SetNodeState(UserControls.Node gridCell, NodeState state)
+        public static void SetNodeState(Node node, NodeState state)
         {
-            Coordinate coordinate = GetCoordinateByGridCell(gridCell);
-            SetNodeState(coordinate, state);
+            SetNodeState(node.position, state);
         }
 
         public static void SetNodeState(Coordinate c, NodeState state)
@@ -85,27 +84,15 @@ namespace Path_Finding_Visualizer
             Nodes[c.x, c.y].SetValue(Node.StateProperty, state);
         }
 
-        public void GetNodeState(UserControls.Node gridCell)
+        public void GetNodeState(Node node)
         {
-            Coordinate coordinate = GetCoordinateByGridCell(gridCell);
-            GetNodeState(coordinate);
+            GetNodeState(node.position);
         }
-
 
         public NodeState GetNodeState(Coordinate c)
         {
             return (NodeState) Nodes[c.x, c.y].GetValue(Node.StateProperty);
         }
-
-        public static Coordinate GetCoordinateByGridCell(UserControls.Node gridCell)
-        {
-            String name = gridCell.Name;
-            int x = int.Parse(gridCell.Name.Split("_")[1]);
-            int y = int.Parse(gridCell.Name.Split("_")[2]);
-
-            return new Coordinate(x, y);
-        }
-
 
         public static List<Node> GetAllNodes()
         {

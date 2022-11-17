@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Path_Finding_Visualizer
 {
-    internal class Coordinate
+    public class Coordinate
     {
         public int x { get; }
         public int y { get; }
