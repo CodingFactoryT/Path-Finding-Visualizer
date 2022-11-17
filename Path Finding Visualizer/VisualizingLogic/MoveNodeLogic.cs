@@ -48,13 +48,13 @@ namespace Path_Finding_Visualizer.VisualizingLogic
 
         private static void ChangeStartNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            Nodes[oldPosition.x, oldPosition.y].Icon = new Path();
-            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonDown -= (sender, e) => { isStartNodeDraggable = true; };
-            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonUp -= (sender, e) => { isStartNodeDraggable = false; };
-
-            Nodes[newPosition.x, newPosition.y].Icon = startNodePath;
-            Nodes[newPosition.x, newPosition.y].MouseLeftButtonDown += (sender, e) => { isStartNodeDraggable = true; };
-            Nodes[newPosition.x, newPosition.y].MouseLeftButtonUp += (sender, e) => { isStartNodeDraggable = false; };
+            Nodes[oldPosition.y, oldPosition.x].Icon = new Path();
+            Nodes[oldPosition.y, oldPosition.x].MouseLeftButtonDown -= (sender, e) => { isStartNodeDraggable = true; };
+            Nodes[oldPosition.y, oldPosition.x].MouseLeftButtonUp -= (sender, e) => { isStartNodeDraggable = false; };
+            
+            Nodes[newPosition.y, newPosition.x].Icon = startNodePath;
+            Nodes[newPosition.y, newPosition.x].MouseLeftButtonDown += (sender, e) => { isStartNodeDraggable = true; };
+            Nodes[newPosition.y, newPosition.x].MouseLeftButtonUp += (sender, e) => { isStartNodeDraggable = false; };
             MainGrid.SetNodeState(newPosition, NodeState.Default);
 
             StartNodePosition = newPosition;
@@ -62,13 +62,13 @@ namespace Path_Finding_Visualizer.VisualizingLogic
 
         private static void ChangeTargetNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            Nodes[oldPosition.x, oldPosition.y].Icon = new Path();
-            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonDown -= (sender, e) => { isTargetNodeDraggable = true; };
-            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonUp -= (sender, e) => { isTargetNodeDraggable = false; };
-
-            Nodes[newPosition.x, newPosition.y].Icon = targetNodePath;
-            Nodes[newPosition.x, newPosition.y].MouseLeftButtonDown += (sender, e) => { isTargetNodeDraggable = true; };
-            Nodes[newPosition.x, newPosition.y].MouseLeftButtonUp += (sender, e) => { isTargetNodeDraggable = false; };
+            Nodes[oldPosition.y, oldPosition.x].Icon = new Path();
+            Nodes[oldPosition.y, oldPosition.x].MouseLeftButtonDown -= (sender, e) => { isTargetNodeDraggable = true; };
+            Nodes[oldPosition.y, oldPosition.x].MouseLeftButtonUp -= (sender, e) => { isTargetNodeDraggable = false; };
+            
+            Nodes[newPosition.y, newPosition.x].Icon = targetNodePath;
+            Nodes[newPosition.y, newPosition.x].MouseLeftButtonDown += (sender, e) => { isTargetNodeDraggable = true; };
+            Nodes[newPosition.y, newPosition.x].MouseLeftButtonUp += (sender, e) => { isTargetNodeDraggable = false; };
             MainGrid.SetNodeState(newPosition, NodeState.Default);
             TargetNodePosition = newPosition;
         }

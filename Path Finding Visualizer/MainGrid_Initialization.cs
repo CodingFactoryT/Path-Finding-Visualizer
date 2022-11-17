@@ -32,18 +32,19 @@ namespace Path_Finding_Visualizer
 
         public void FillGridElementsArray()
         {
-            for(int i = 0; i < Rows; i++)
+            for(int y = 0; y < Rows; y++)
             {
-                for(int j = 0; j < Columns; j++)
+                for(int x = 0; x < Columns; x++)
                 {
-                    Node node = new UserControls.Node()
+                    Node node = new Node()
                     {
-                        Name = "Node_" + j + "_" + i
+                        Name = "Node_" + x + "_" + y,
+                        position = new Coordinate(x, y)
                     };
                     node.MouseEnter += OnMouseAction;       //line of walls while mouse moves
                     node.MouseDown += OnMouseAction;        //single wall while mouse doesn´t move
                     node.MouseMove += MoveNodeLogic.OnMouseMove;
-                    Nodes[i, j] = node;
+                    Nodes[y, x] = node;
                 }
             }
         }

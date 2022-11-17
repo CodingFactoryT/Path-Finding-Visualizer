@@ -79,9 +79,9 @@ namespace Path_Finding_Visualizer
                     break;
             }
 
-            Nodes[c.x, c.y].Background = (SolidColorBrush) Application.Current.FindResource(fillBrushName);
-            Nodes[c.x, c.y].BorderBrush = (SolidColorBrush) Application.Current.FindResource(strokeBrushName);
-            Nodes[c.x, c.y].SetValue(Node.StateProperty, state);
+            Nodes[c.y, c.x].Background = (SolidColorBrush) Application.Current.FindResource(fillBrushName);
+            Nodes[c.y, c.x].BorderBrush = (SolidColorBrush) Application.Current.FindResource(strokeBrushName);
+            Nodes[c.y, c.x].SetValue(Node.StateProperty, state);
         }
 
         public void GetNodeState(Node node)
@@ -91,19 +91,16 @@ namespace Path_Finding_Visualizer
 
         public NodeState GetNodeState(Coordinate c)
         {
-            return (NodeState) Nodes[c.x, c.y].GetValue(Node.StateProperty);
+            return (NodeState) Nodes[c.y, c.x].GetValue(Node.StateProperty);
         }
 
         public static List<Node> GetAllNodes()
         {
             List<Node> allNodes = new List<Node>();
 
-            for (int i = 0; i < Nodes.GetLength(0); i++)
+            foreach (Node n in Nodes)
             {
-                for(int j = 0; j < Nodes.Length; j++)
-                {
-                    allNodes.Add(Nodes[i, j]);
-                }
+                allNodes.Add(n);
             }
 
             return allNodes;

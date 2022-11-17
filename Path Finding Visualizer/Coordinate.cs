@@ -12,8 +12,8 @@ namespace Path_Finding_Visualizer
         public int y { get; }
         public Coordinate(int x, int y)
         {
-            this.x = y;     //x and y are swapped because a two-dimensional array firstly takes the
-            this.y = x;     //row- and then  the column-dimension (opposite of normal coordinate systems)
+            this.x = x;
+            this.y = y;
         }
 
         public bool Equals(Coordinate c)
