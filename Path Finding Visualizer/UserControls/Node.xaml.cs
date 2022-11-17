@@ -19,6 +19,7 @@ namespace Path_Finding_Visualizer.UserControls
     {
         public int distance;
         public Coordinate position;
+        public Node previousNode;
 
         public NodeState State
         {

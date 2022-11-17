@@ -10,11 +10,20 @@ namespace Path_Finding_Visualizer.VisualizingLogic.Algortihms
 {
     internal class PathFindingAlgorithm
     {
-        public static async void Animate(List<Node> visitedNodesInOrder, double delayInMilliseconds)
+        public static async void AnimateVisitedNodes(List<Node> visitedNodesInOrder, double delayInMilliseconds)
         {
             foreach(Node n in visitedNodesInOrder)
             {
                 MainGrid.SetNodeState(n, NodeState.Visited);
+                await Task.Delay(TimeSpan.FromMilliseconds(delayInMilliseconds));
+            }
+        }
+
+        public static async void AnimateShortestPath(List<Node> shortestPathNodesInOrder, double delayInMilliseconds)
+        {
+            foreach (Node n in shortestPathNodesInOrder)
+            {
+                MainGrid.SetNodeState(n, NodeState.ShortestPath);
                 await Task.Delay(TimeSpan.FromMilliseconds(delayInMilliseconds));
             }
         }

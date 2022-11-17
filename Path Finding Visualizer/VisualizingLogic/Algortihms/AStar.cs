@@ -12,7 +12,12 @@ namespace Path_Finding_Visualizer.VisualizingLogic.Algortihms
         private Coordinate startPosition = MoveNodeLogic.StartNodePosition;
         private Coordinate targetPosition = MoveNodeLogic.TargetNodePosition;
 
-        public List<Node> Run(Coordinate StartPosition, Coordinate TargetPosition)
+        public List<Node> GetShortestPathNodesInOrder()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Node> GetVisitedNodesInOrder()
         {
             throw new NotImplementedException();
         }

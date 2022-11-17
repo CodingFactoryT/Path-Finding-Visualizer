@@ -9,6 +9,7 @@ namespace Path_Finding_Visualizer.VisualizingLogic.Algortihms
 {
     internal interface IPathFindingAlgorithm
     {
-        List<Node> Run(Coordinate StartPosition, Coordinate TargetPosition);   //returns the visited nodes in order
+        List<Node> GetVisitedNodesInOrder();   //returns the visited nodes in order
+        List<Node> GetShortestPathNodesInOrder();
     }
 }

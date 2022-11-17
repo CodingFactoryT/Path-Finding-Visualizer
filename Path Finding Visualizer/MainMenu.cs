@@ -38,11 +38,13 @@ namespace Path_Finding_Visualizer
                 stopButton.Visibility = Visibility.Visible;
                 MainGrid.IsDrawingEnabled = false;
 
-                //TODO start calculation and animation on a new thread:
-
                 IPathFindingAlgorithm algorithm = new Dijkstra();
-                List<Node> visitedNodesInOrder = algorithm.Run(MoveNodeLogic.StartNodePosition, MoveNodeLogic.TargetNodePosition);
-                PathFindingAlgorithm.Animate(visitedNodesInOrder, 500);
+                List<Node> visitedNodesInOrder = algorithm.GetVisitedNodesInOrder();
+                List<Node> shortestPathNodesInOrder = algorithm.GetShortestPathNodesInOrder();
+                //TODO start animation (not calculation!) on a new thread:
+                int delay = 100;
+                PathFindingAlgorithm.AnimateVisitedNodes(visitedNodesInOrder, delay);
+                PathFindingAlgorithm.AnimateShortestPath(shortestPathNodesInOrder, delay/5);
             }
             else
             {
@@ -51,13 +53,13 @@ namespace Path_Finding_Visualizer
                 stopButton.Visibility = Visibility.Hidden;
                 MainGrid.IsDrawingEnabled = true;
 
-                //TODO pause thread:
+                //TODO pause animation thread:
             }
         }
 
         public void StopButtonClicked()
         {
-            //TODO stop thread:
+            //TODO stop animation thread:
         }
     }
 }
