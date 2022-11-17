@@ -8,49 +8,54 @@ using Path_Finding_Visualizer.VisualizingLogic;
 using Path_Finding_Visualizer.UserControls;
 using System.Diagnostics;
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace Path_Finding_Visualizer
 {
     internal partial class MainGrid //initialization logic for MainGrid Class
     {
-        private static int rows = 30;
-        private static int columns = 50;
-        protected UniformGrid grid;
-        protected static GridCell[,] gridCells;
+        public static int Rows { get; private set; }
+        public static int Columns { get; private set; }
+        public static Node[,] Nodes { get; set; }
+
+        private readonly UniformGrid grid;
 
         public MainGrid(UniformGrid grid)
         {
             this.grid = grid;
-            rows = grid.Rows;
-            columns = grid.Columns;
-            gridCells = new GridCell[rows, columns];
+            Rows = grid.Rows;
+            Columns = grid.Columns;
+            Nodes = new Node[Rows, Columns];
             FillGridElementsArray();
             BindGridToUI();
         }
 
         public void FillGridElementsArray()
         {
-            for(int i = 0; i < rows; i++)
+            for(int i = 0; i < Rows; i++)
             {
-                for(int j = 0; j < columns; j++)
+                for(int j = 0; j < Columns; j++)
                 {
-                    GridCell gridCell = new GridCell();
-                    gridCell.Name = "Node_" + j + "_" + i;
-                    gridCell.MouseEnter += OnMouseAction;       //line of walls while mouse moves
-                    gridCell.MouseDown += OnMouseAction;        //single wall while mouse doesn´t move
-                    gridCell.MouseMove += MoveNodeLogic.OnMouseMove;
-                    gridCells[i, j] = gridCell;
+                    Node node = new UserControls.Node()
+                    {
+                        Name = "Node_" + j + "_" + i
+                    };
+                    node.MouseEnter += OnMouseAction;       //line of walls while mouse moves
+                    node.MouseDown += OnMouseAction;        //single wall while mouse doesn´t move
+                    node.MouseMove += MoveNodeLogic.OnMouseMove;
+                    Nodes[i, j] = node;
                 }
             }
         }
-
+        
         public void BindGridToUI()
         {
-            foreach(GridCell g in gridCells)
+            foreach(Node n in Nodes)
             {
-                SetNodeState(g, NodeState.Default);
-                grid.Children.Add(g);
+                SetNodeState(n, NodeState.Default);
+                grid.Children.Add(n);
             }
         }
+
     }
 }

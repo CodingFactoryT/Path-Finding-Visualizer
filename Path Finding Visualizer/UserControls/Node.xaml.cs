@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Path_Finding_Visualizer.UserControls
 {
-    public partial class GridCell : UserControl
+    public partial class Node : UserControl
     {
 
         public NodeState State
@@ -25,8 +25,8 @@ namespace Path_Finding_Visualizer.UserControls
         }
 
         public static readonly DependencyProperty StateProperty =
-            DependencyProperty.Register("State", typeof(NodeState), typeof(GridCell), new PropertyMetadata(NodeState.Default));
-
+            DependencyProperty.Register("State", typeof(NodeState), typeof(Node), new PropertyMetadata(NodeState.Default));
+        
         public object Icon
         {
             get { return (object)GetValue(IconProperty); }
@@ -35,10 +35,10 @@ namespace Path_Finding_Visualizer.UserControls
 
         // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(object), typeof(GridCell));
+            DependencyProperty.Register("Icon", typeof(object), typeof(Node));
 
 
-        public GridCell()
+        public Node()
         {
             InitializeComponent();
         }

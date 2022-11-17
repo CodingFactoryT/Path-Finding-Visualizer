@@ -18,11 +18,11 @@ namespace Path_Finding_Visualizer
 {
     public partial class MainWindow : Window
     {
-        MainMenu mainMenu;
+        private readonly MainMenu mainMenu;
         public MainWindow()
         {
             InitializeComponent();
-            new MoveNodeLogic(grid);
+            _ = new MoveNodeLogic(grid);
             mainMenu = new MainMenu(IconBar);
         }
 
@@ -39,6 +39,7 @@ namespace Path_Finding_Visualizer
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             mainMenu.PlayPauseButtonClicked();
+            mainMenu.StopButtonClicked();
             MainGrid.ClearGrid();
         }
 

@@ -9,7 +9,7 @@ namespace Path_Finding_Visualizer
     public enum NodeState
     {
         Default,
-        Explored,
+        Visited,
         ShortestPath,
         Border
     }

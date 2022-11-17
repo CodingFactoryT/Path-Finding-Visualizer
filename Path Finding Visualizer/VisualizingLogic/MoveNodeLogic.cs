@@ -16,60 +16,61 @@ namespace Path_Finding_Visualizer.VisualizingLogic
 {
     internal class MoveNodeLogic : MainGrid
     {
-        public static Coordinate startNodePosition { get; private set; } = new Coordinate(0, 0);
-        public static Coordinate targetNodePosition { get; private set; } = new Coordinate(20, 10);
-        private static Path startNodePath = (Path) Application.Current.FindResource("StartNodeIcon");
-        private static Path targetNodePath = (Path) Application.Current.FindResource("TargetNodeIcon");
+        public static Coordinate StartNodePosition { get; private set; } = new Coordinate(0, 0);
+        public static Coordinate TargetNodePosition { get; private set; } = new Coordinate(20, 10);
+        private static readonly Path startNodePath = (Path) Application.Current.FindResource("StartNodeIcon");
+        private static readonly Path targetNodePath = (Path) Application.Current.FindResource("TargetNodeIcon");
         private static bool isStartNodeDraggable = false;
         private static bool isTargetNodeDraggable = false;
 
         public MoveNodeLogic(UniformGrid grid) : base(grid)
         {
-            ChangeStartNodePosition(new Coordinate(10,10), startNodePosition);
-            ChangeTargetNodePosition(new Coordinate(20, 10), targetNodePosition);
+            ChangeStartNodePosition(new Coordinate(10,10), StartNodePosition);
+            ChangeTargetNodePosition(new Coordinate(20, 10), TargetNodePosition);
         }
 
         internal static void OnMouseMove(object sender, MouseEventArgs e)
         {
-            GridCell gridCell = sender as GridCell;
+            UserControls.Node gridCell = sender as UserControls.Node;
             Coordinate gridCellPos = MainGrid.GetCoordinateByGridCell(gridCell);
-            Debug.WriteLine(isStartNodeDraggable);
 
-            if (isStartNodeDraggable)
+            if (isStartNodeDraggable && !gridCellPos.Equals(TargetNodePosition) 
+                && !gridCellPos.Equals(StartNodePosition))  //performance increases: if gridcell is already the start node, it doesn´t have to be set again
             {
-                ChangeStartNodePosition(startNodePosition, gridCellPos);
+                ChangeStartNodePosition(StartNodePosition, gridCellPos);
             }
-            else if (isTargetNodeDraggable)
+            else if (isTargetNodeDraggable && !gridCellPos.Equals(StartNodePosition) 
+                && !gridCellPos.Equals(TargetNodePosition)) //performance increases: if gridcell is already the target node, it doesn´t have to be set again
             {
-                ChangeTargetNodePosition(targetNodePosition, gridCellPos);
+                ChangeTargetNodePosition(TargetNodePosition, gridCellPos);
             }
         }
 
         private static void ChangeStartNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
-            gridCells[oldPosition.x, oldPosition.y].MouseLeftButtonDown -= (sender, e) => { isStartNodeDraggable = true; };
-            gridCells[oldPosition.x, oldPosition.y].MouseLeftButtonUp -= (sender, e) => { isStartNodeDraggable = false; };
+            Nodes[oldPosition.x, oldPosition.y].Icon = new Path();
+            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonDown -= (sender, e) => { isStartNodeDraggable = true; };
+            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonUp -= (sender, e) => { isStartNodeDraggable = false; };
 
-            gridCells[newPosition.x, newPosition.y].Icon = startNodePath;
-            gridCells[newPosition.x, newPosition.y].MouseLeftButtonDown += (sender, e) => { isStartNodeDraggable = true; };
-            gridCells[newPosition.x, newPosition.y].MouseLeftButtonUp += (sender, e) => { isStartNodeDraggable = false; };
-            MainGrid.SetNodeState(gridCells[newPosition.x, newPosition.y], NodeState.Default);
+            Nodes[newPosition.x, newPosition.y].Icon = startNodePath;
+            Nodes[newPosition.x, newPosition.y].MouseLeftButtonDown += (sender, e) => { isStartNodeDraggable = true; };
+            Nodes[newPosition.x, newPosition.y].MouseLeftButtonUp += (sender, e) => { isStartNodeDraggable = false; };
+            MainGrid.SetNodeState(Nodes[newPosition.x, newPosition.y], NodeState.Default);
 
-            startNodePosition = newPosition;
+            StartNodePosition = newPosition;
         }
 
         private static void ChangeTargetNodePosition(Coordinate oldPosition, Coordinate newPosition)
         {
-            gridCells[oldPosition.x, oldPosition.y].Icon = new Path();
-            gridCells[oldPosition.x, oldPosition.y].MouseLeftButtonDown -= (sender, e) => { isTargetNodeDraggable = true; };
-            gridCells[oldPosition.x, oldPosition.y].MouseLeftButtonUp -= (sender, e) => { isTargetNodeDraggable = false; };
+            Nodes[oldPosition.x, oldPosition.y].Icon = new Path();
+            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonDown -= (sender, e) => { isTargetNodeDraggable = true; };
+            Nodes[oldPosition.x, oldPosition.y].MouseLeftButtonUp -= (sender, e) => { isTargetNodeDraggable = false; };
 
-            gridCells[newPosition.x, newPosition.y].Icon = targetNodePath;
-            gridCells[newPosition.x, newPosition.y].MouseLeftButtonDown += (sender, e) => { isTargetNodeDraggable = true; };
-            gridCells[newPosition.x, newPosition.y].MouseLeftButtonUp += (sender, e) => { isTargetNodeDraggable = false; };
-            MainGrid.SetNodeState(gridCells[newPosition.x, newPosition.y], NodeState.Default);
-            targetNodePosition = newPosition;
+            Nodes[newPosition.x, newPosition.y].Icon = targetNodePath;
+            Nodes[newPosition.x, newPosition.y].MouseLeftButtonDown += (sender, e) => { isTargetNodeDraggable = true; };
+            Nodes[newPosition.x, newPosition.y].MouseLeftButtonUp += (sender, e) => { isTargetNodeDraggable = false; };
+            MainGrid.SetNodeState(Nodes[newPosition.x, newPosition.y], NodeState.Default);
+            TargetNodePosition = newPosition;
         }
     }
 }

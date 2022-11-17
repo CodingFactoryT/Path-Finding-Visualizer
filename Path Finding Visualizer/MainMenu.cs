@@ -1,4 +1,6 @@
 ﻿using Path_Finding_Visualizer.UserControls;
+using Path_Finding_Visualizer.VisualizingLogic;
+using Path_Finding_Visualizer.VisualizingLogic.Algortihms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,12 @@ namespace Path_Finding_Visualizer
                 startPauseButton.Description = "Pause";
                 stopButton.Visibility = Visibility.Visible;
                 MainGrid.IsDrawingEnabled = false;
+
+                //TODO start calculation and animation on a new thread:
+
+                IPathFindingAlgorithm algorithm = new Dijkstra();
+                List<Node> visitedNodesInOrder = algorithm.Run(MoveNodeLogic.StartNodePosition, MoveNodeLogic.TargetNodePosition);
+                PathFindingAlgorithm.Animate(visitedNodesInOrder, 500);
             }
             else
             {
@@ -42,7 +50,14 @@ namespace Path_Finding_Visualizer
                 startPauseButton.Description = "Start";
                 stopButton.Visibility = Visibility.Hidden;
                 MainGrid.IsDrawingEnabled = true;
+
+                //TODO pause thread:
             }
+        }
+
+        public void StopButtonClicked()
+        {
+            //TODO stop thread:
         }
     }
 }
