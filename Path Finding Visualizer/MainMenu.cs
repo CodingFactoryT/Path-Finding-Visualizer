@@ -27,7 +27,7 @@ namespace Path_Finding_Visualizer
             stopButton.Visibility = Visibility.Hidden;
         }
 
-        public void PlayPauseButtonClicked()
+        public async void PlayPauseButtonClicked()
         {
             isExecutionRunning = !isExecutionRunning;
 
@@ -42,9 +42,10 @@ namespace Path_Finding_Visualizer
                 List<Node> visitedNodesInOrder = algorithm.GetVisitedNodesInOrder();
                 List<Node> shortestPathNodesInOrder = algorithm.GetShortestPathNodesInOrder();
                 //TODO start animation (not calculation!) on a new thread:
-                int delay = 100;
-                PathFindingAlgorithm.AnimateVisitedNodes(visitedNodesInOrder, delay);
-                PathFindingAlgorithm.AnimateShortestPath(shortestPathNodesInOrder, delay/5);
+                int delay = 10;
+                Task task = PathFindingAlgorithm.AnimateVisitedNodes(visitedNodesInOrder, delay);
+                await task;
+                _ = PathFindingAlgorithm.AnimateShortestPath(shortestPathNodesInOrder, delay/3);
             }
             else
             {

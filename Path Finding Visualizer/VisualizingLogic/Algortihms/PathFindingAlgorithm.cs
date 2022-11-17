@@ -10,7 +10,7 @@ namespace Path_Finding_Visualizer.VisualizingLogic.Algortihms
 {
     internal class PathFindingAlgorithm
     {
-        public static async void AnimateVisitedNodes(List<Node> visitedNodesInOrder, double delayInMilliseconds)
+        public static async Task AnimateVisitedNodes(List<Node> visitedNodesInOrder, double delayInMilliseconds)
         {
             foreach(Node n in visitedNodesInOrder)
             {
@@ -19,7 +19,7 @@ namespace Path_Finding_Visualizer.VisualizingLogic.Algortihms
             }
         }
 
-        public static async void AnimateShortestPath(List<Node> shortestPathNodesInOrder, double delayInMilliseconds)
+        public static async Task AnimateShortestPath(List<Node> shortestPathNodesInOrder, double delayInMilliseconds)
         {
             foreach (Node n in shortestPathNodesInOrder)
             {

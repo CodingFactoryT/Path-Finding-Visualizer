@@ -85,7 +85,7 @@ namespace Path_Finding_Visualizer.VisualizingLogic.Algortihms
             Node currentNode = targetNode;
             while(currentNode != null)
             {
-                shortestPathNodesInOrder.Insert(0, currentNode);
+                shortestPathNodesInOrder.Add(currentNode);
                 currentNode = currentNode.previousNode;
             }
             return shortestPathNodesInOrder;
