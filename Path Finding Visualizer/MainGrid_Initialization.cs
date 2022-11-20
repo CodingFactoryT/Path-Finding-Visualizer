@@ -57,6 +57,5 @@ namespace Path_Finding_Visualizer
                 grid.Children.Add(n);
             }
         }
-
     }
 }

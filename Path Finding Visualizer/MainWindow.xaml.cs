@@ -18,7 +18,7 @@ namespace Path_Finding_Visualizer
 {
     public partial class MainWindow : Window
     {
-        private readonly MainMenu mainMenu;
+        public static MainMenu mainMenu;
         public MainWindow()
         {
             InitializeComponent();
@@ -26,9 +26,9 @@ namespace Path_Finding_Visualizer
             mainMenu = new MainMenu(IconBar);
         }
 
-        private void ClearGridButton_Click(object sender, RoutedEventArgs e)
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            MainGrid.ClearGrid();
+            MainGrid.ResetAllNodes();
         }
 
         private void StartPauseButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +40,6 @@ namespace Path_Finding_Visualizer
         {
             mainMenu.PlayPauseButtonClicked();
             mainMenu.StopButtonClicked();
-            MainGrid.ClearGrid();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)

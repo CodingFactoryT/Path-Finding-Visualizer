@@ -12,12 +12,13 @@ using System.Windows.Shapes;
 
 namespace Path_Finding_Visualizer
 {
-    internal class MainMenu
+    public class MainMenu
     {
         private StackPanel iconBar;
         private MenuButton startPauseButton;
         private MenuButton stopButton;
         private bool isExecutionRunning = false;
+        private bool hasStarted = false;
 
         public MainMenu(StackPanel iconBar)
         {
@@ -27,7 +28,7 @@ namespace Path_Finding_Visualizer
             stopButton.Visibility = Visibility.Hidden;
         }
 
-        public async void PlayPauseButtonClicked()
+        public void PlayPauseButtonClicked()
         {
             isExecutionRunning = !isExecutionRunning;
 
@@ -38,14 +39,15 @@ namespace Path_Finding_Visualizer
                 stopButton.Visibility = Visibility.Visible;
                 MainGrid.IsDrawingEnabled = false;
 
-                IPathFindingAlgorithm algorithm = new Dijkstra();
-                List<Node> visitedNodesInOrder = algorithm.GetVisitedNodesInOrder();
-                List<Node> shortestPathNodesInOrder = algorithm.GetShortestPathNodesInOrder();
-                //TODO start animation (not calculation!) on a new thread:
-                int delay = 10;
-                Task task = PathFindingAlgorithm.AnimateVisitedNodes(visitedNodesInOrder, delay);
-                await task;
-                _ = PathFindingAlgorithm.AnimateShortestPath(shortestPathNodesInOrder, delay/3);
+                if(!hasStarted)
+                {
+                    MainGrid.ResetAllFoundPaths();
+                    PathFindingAlgorithm.StartAnimation();
+                }
+                else
+                {
+                    PathFindingAlgorithm.ResumeAnimation();
+                }
             }
             else
             {
@@ -54,13 +56,15 @@ namespace Path_Finding_Visualizer
                 stopButton.Visibility = Visibility.Hidden;
                 MainGrid.IsDrawingEnabled = true;
 
-                //TODO pause animation thread:
+                PathFindingAlgorithm.PauseAnimation();
             }
         }
 
         public void StopButtonClicked()
         {
-            //TODO stop animation thread:
+            PathFindingAlgorithm.StopAnimation();
+            hasStarted = false;
+            MainGrid.ResetAllFoundPaths();
         }
     }
 }

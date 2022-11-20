@@ -33,19 +33,11 @@ namespace Path_Finding_Visualizer
                     {
                         SetNodeState(pos, NodeState.Border);
                     }
-                } 
+                }
                 else if(e.RightButton == MouseButtonState.Pressed)
                 {
                     SetNodeState(node, NodeState.Default);
                 }
-            }
-        }
-
-        public static void ClearGrid()
-        {
-            foreach (Node n in Nodes)
-            {
-                SetNodeState(n, NodeState.Default);
             }
         }
 
@@ -84,9 +76,9 @@ namespace Path_Finding_Visualizer
             Nodes[c.y, c.x].SetValue(Node.StateProperty, state);
         }
 
-        public void GetNodeState(Node node)
+        public NodeState GetNodeState(Node node)
         {
-            GetNodeState(node.position);
+            return GetNodeState(node.position);
         }
 
         public NodeState GetNodeState(Coordinate c)
@@ -105,5 +97,33 @@ namespace Path_Finding_Visualizer
 
             return allNodes;
         }
+
+        public static void ResetAllFoundPaths()
+        {
+            foreach (Node n in Nodes)
+            {
+                if(n.State == NodeState.Border)
+                {
+                    SetNodeState(n, NodeState.Border);
+                }
+                else
+                {
+                    SetNodeState(n, NodeState.Default);
+                }
+                n.distance = 0;
+                n.previousNode = null;
+            }
+        }
+
+        public static void ResetAllNodes()
+        {
+            foreach (Node n in Nodes)
+            {
+                SetNodeState(n, NodeState.Default);
+                n.distance = 0;
+                n.previousNode = null;
+            }
+        }
+
     }
 }

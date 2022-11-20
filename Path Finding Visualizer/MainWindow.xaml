@@ -46,11 +46,11 @@
                                          Icon="{StaticResource StopExecutionIcon}"
                                          Description="Stop"
                                          ButtonClick="StopButton_Click"/>
-                <usercontrols:MenuButton x:Name="ClearGridButton"
-                                         Icon="{StaticResource ClearGridIcon}"
+                <usercontrols:MenuButton x:Name="ResetButton"
+                                         Icon="{StaticResource ResetIcon}"
                                          Description="Clear Grid"
                                          Margin="0,30,0,0"
-                                         ButtonClick="ClearGridButton_Click"/>
+                                         ButtonClick="ResetButton_Click"/>
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.RowSpan="2" 
@@ -106,7 +106,6 @@
                                 IsSnapToTickEnabled="True" 
                                 Background="{StaticResource SettingsBarBrush}" 
                                 HorizontalContentAlignment="Center">
-
                         </Slider>
                     </Grid>
                 </Border>
